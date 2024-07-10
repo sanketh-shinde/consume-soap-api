@@ -19,12 +19,12 @@ public class SoapClient {
     @Autowired
     private Jaxb2Marshaller marshaller;
 
-    public NumberToDollarsResponse numberToDollars(BigDecimal number) {
+    public NumberToDollarsResponse numberToDollars(BigDecimal dNum) {
         NumberToDollars numberToDollars = new NumberToDollars();
-        numberToDollars.setDNum(number);
-        
+        numberToDollars.setDNum(dNum);
+
         WebServiceTemplate template = new WebServiceTemplate(marshaller);
-        
+
         return (NumberToDollarsResponse) template.marshalSendAndReceive("https://www.dataaccess.com/webservicesserver/numberconversion.wso?WSDL", numberToDollars,
                 new SoapActionCallback("http://www.dataaccess.com/webservicesserver/NumberToDollars"));
     }
@@ -32,9 +32,9 @@ public class SoapClient {
     public NumberToWordsResponse numberToWords(BigInteger ubiNum) {
         NumberToWords numberToWords = new NumberToWords();
         numberToWords.setUbiNum(ubiNum);
-        
+
         WebServiceTemplate template = new WebServiceTemplate(marshaller);
-        
+
         return (NumberToWordsResponse) template.marshalSendAndReceive("https://www.dataaccess.com/webservicesserver/numberconversion.wso?WSDL", numberToWords,
                 new SoapActionCallback("http://www.dataaccess.com/webservicesserver/NumberToWords"));
     }
